@@ -1,42 +1,28 @@
-Here's a simple shell script that renames a file by appending the current date and time to its name. You can save this script as `rename_with_datetime.sh` and run it in a terminal.
+def count_same_endings(words):
+    """
+    Count the number of word pairs with the same ending.
 
-```sh
-#!/bin/bash
+    Parameters:
+    words (list): List of words.
 
-# Check if the correct number of arguments are provided
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 filename"
-    exit 1
-fi
+    Returns:
+    int: The count of word pairs with the same ending.
+    """
+    strings = sorted([word[::-1] for word in words])
+    count = 0
+    to_print = []
+    i = 0
+    while i < len(words):
+        j = 1
+        while i + j < len(words) and strings[i + j].startswith(strings[i]):
+            # to_print.append((strings[i+j][::-1], strings[i][::-1]))
+            count += 1
+            j += 1
+        i += 1
+    # print(to_print)
+    return count
 
-# Get the current date and time
-datetime=$(date +"%Y%m%d_%H%M%S")
-
-# Extract the filename and extension
-filename=$(basename -- "$1")
-extension="${filename##*.}"
-filename="${filename%.*}"
-
-# Construct the new filename
-new_filename="${filename}_${datetime}.${extension}"
-
-# Rename the file
-mv "$1" "$new_filename"
-
-# Print the new filename
-echo "File has been renamed to: $new_filename"
-```
-
-### How to Use the Script
-
-1. **Save the Script**: Save the script to a file, for example, `rename_with_datetime.sh`.
-2. **Make the Script Executable**: Run the following command to make the script executable:
-   ```sh
-   chmod +x rename_with_datetime.sh
-   ```
-3. **Run the Script**: Execute the script with the filename as an argument:
-   ```sh
-   ./rename_with_datetime.sh yourfile.txt
-   ```
-
-This script will rename `yourfile.txt` to something like `yourfile_20240520_123456.txt`, where the appended part represents the current date and time in the format `YYYYMMDD_HHMMSS`.
+words = ['cba', 'a', 'a', 'a', 'a', 'b', 'ba', 'ca']
+result = count_same_endings(words)
+print(result)
+19

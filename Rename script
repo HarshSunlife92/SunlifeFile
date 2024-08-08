@@ -1,28 +1,7 @@
-def count_same_endings(words):
-    """
-    Count the number of word pairs with the same ending.
+SUNVibe is an event to celebrate Engineering!
 
-    Parameters:
-    words (list): List of words.
+Driving innovation with an end objective of accelerating digital transformation at Sunlife and creating vibrant engineering culture is essence of SUNVibe.
 
-    Returns:
-    int: The count of word pairs with the same ending.
-    """
-    strings = sorted([word[::-1] for word in words])
-    count = 0
-    to_print = []
-    i = 0
-    while i < len(words):
-        j = 1
-        while i + j < len(words) and strings[i + j].startswith(strings[i]):
-            # to_print.append((strings[i+j][::-1], strings[i][::-1]))
-            count += 1
-            j += 1
-        i += 1
-    # print(to_print)
-    return count
+SUNVibe aims to create an environment that nurtures the craft of our employees, empowers innovation, encourage employees to think creatively, ideate, collaborate and contribute to SunLife's journey of embracing emerging technologies, enhancing operational efficiency, enhancing product stability and client experience and delivering innovative solutions.
 
-words = ['cba', 'a', 'a', 'a', 'a', 'b', 'ba', 'ca']
-result = count_same_endings(words)
-print(result)
-19
+It aims to create a work environment that celebrates engineering excellence and continuous learning. By fostering a strong engineering culture, SUNVibe would catalyze hiring top talent, enhance employee engagement, and drive collective growth for SunLife.​

@@ -1,0 +1,61 @@
+-- First join based on mx_Custom_7
+SELECT 
+    CONCAT_WS(' ', P.FirstName, P.LastName) AS VisitCollegeName,
+    P.FirstName,
+    P.LastName,
+    P.OwnerId,
+    PAE.mx_Custom_5 AS TotalKm,
+    PE.mx_College_Code AS CollegeCode,
+    PAE.mx_Custom_8 AS TravelAllowanceCategory,
+    U.EmployeeId AS VisitEmployeeId,
+    CONCAT_WS(' ', U.FirstName, U.LastName) AS OwnerFullName,
+    PAE.RelatedProspectActivityId,
+    PAE.mx_Custom_15 AS AccomodationExpenseCategory,
+    PAE.mx_Custom_17 AS FoodExpenseCategory,
+    PAE.mx_Custom_19 AS SpecialExpenseCategory,
+    PAE.mx_Custom_21 AS OtherExpenseCategory,
+    CONCAT_WS(' ', MU.FirstName, MU.LastName) AS ManagerFullName,
+    MU.EmailAddress AS ManagerEmail,
+    COPB1.mx_CustomObject_1 AS Expense,
+    'From_Custom_7' AS SOURCE
+FROM Prospect_Base P
+INNER JOIN ProspectSystem_ExtensionBase AS PSEB ON PSEB.ProspectID = P.ProspectID
+INNER JOIN Prospect_ExtensionBase PE ON P.ProspectId = PE.ProspectId
+INNER JOIN ProspectActivity_Base PA ON PA.RelatedProspectId = P.ProspectId
+LEFT JOIN ProspectActivity_ExtensionBase PAE ON PAE.RelatedProspectActivityId = PA.ProspectActivityId
+LEFT JOIN CustomObjectProspectActivity_Base COPB1 ON PAE.mx_Custom_7 = COPB1.CustomObjectProspectActivityId
+LEFT JOIN `User` U ON P.OwnerId = U.UserID 
+LEFT JOIN `User` MU ON U.ManagerUserId = MU.UserID
+WHERE PSEB.LeadType = 'OT_2' AND PA.ActivityEvent = 219
+ 
+UNION ALL
+ 
+-- Second join based on mx_Custom_14
+SELECT 
+    CONCAT_WS(' ', P.FirstName, P.LastName) AS VisitCollegeName,
+    P.FirstName,
+    P.LastName,
+    P.OwnerId,
+    PAE.mx_Custom_5 AS TotalKm,
+    PE.mx_College_Code AS CollegeCode,
+    PAE.mx_Custom_8 AS TravelAllowanceCategory,
+    U.EmployeeId AS VisitEmployeeId,
+    CONCAT_WS(' ', U.FirstName, U.LastName) AS OwnerFullName,
+    PAE.RelatedProspectActivityId,
+    PAE.mx_Custom_15 AS AccomodationExpenseCategory,
+    PAE.mx_Custom_17 AS FoodExpenseCategory,
+    PAE.mx_Custom_19 AS SpecialExpenseCategory,
+    PAE.mx_Custom_21 AS OtherExpenseCategory,
+    CONCAT_WS(' ', MU.FirstName, MU.LastName) AS ManagerFullName,
+    MU.EmailAddress AS ManagerEmail,
+    COPB2.mx_CustomObject_1 AS Expense,
+    'From_Custom_14' AS SOURCE
+FROM Prospect_Base P
+INNER JOIN ProspectSystem_ExtensionBase AS PSEB ON PSEB.ProspectID = P.ProspectID
+INNER JOIN Prospect_ExtensionBase PE ON P.ProspectId = PE.ProspectId
+INNER JOIN ProspectActivity_Base PA ON PA.RelatedProspectId = P.ProspectId
+LEFT JOIN ProspectActivity_ExtensionBase PAE ON PAE.RelatedProspectActivityId = PA.ProspectActivityId
+LEFT JOIN CustomObjectProspectActivity_Base COPB2 ON PAE.mx_Custom_14 = COPB2.CustomObjectProspectActivityId
+LEFT JOIN `User` U ON P.OwnerId = U.UserID 
+LEFT JOIN `User` MU ON U.ManagerUserId = MU.UserID
+WHERE PSEB.LeadType = 'OT_2' AND PA.ActivityEvent = 219

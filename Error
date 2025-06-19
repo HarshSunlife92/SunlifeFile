@@ -1,0 +1,2 @@
+Error loading row to target table [event_otl_t]. Error message [ FnName: Execute - [Informatica][ODBC SQL Server Wire Protocol driver]Numeric value out of range. Error in parameter 11. FName: Execute - [Informatica][ODBC SQL Server Wire Protocol driver]Operation cancelled. Error in parameter 11. FnName: Execute - [DataDirect]
+[ODBC lib] Function sequence error]
